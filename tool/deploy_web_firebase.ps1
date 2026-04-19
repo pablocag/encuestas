@@ -16,6 +16,17 @@ else {
   flutter build web --release
 }
 
+$buildWeb = Join-Path $RepoRoot 'build\web'
+if (-not (Test-Path $buildWeb)) {
+  Write-Error "No existe $buildWeb tras el build."
+}
+$hostingDir = Join-Path $RepoRoot 'firebase\hosting_web'
+if (Test-Path $hostingDir) {
+  Remove-Item -Path $hostingDir -Recurse -Force
+}
+New-Item -ItemType Directory -Path $hostingDir | Out-Null
+Copy-Item -Path (Join-Path $buildWeb '*') -Destination $hostingDir -Recurse -Force
+
 Set-Location (Join-Path $RepoRoot 'firebase')
 Write-Host 'Desplegando solo Hosting...'
-firebase deploy --only hosting
+firebase deploy --only hosting --project encuestas-prometheus-9tzwei --non-interactive

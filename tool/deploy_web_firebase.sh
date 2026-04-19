@@ -14,6 +14,17 @@ else
   flutter build web --release
 fi
 
-cd firebase
+ROOT="$(pwd)"
+BUILD_WEB="$ROOT/build/web"
+HOSTING_DIR="$ROOT/firebase/hosting_web"
+if [[ ! -d "$BUILD_WEB" ]]; then
+  echo "No existe $BUILD_WEB tras el build." >&2
+  exit 1
+fi
+rm -rf "$HOSTING_DIR"
+mkdir -p "$HOSTING_DIR"
+cp -R "$BUILD_WEB"/. "$HOSTING_DIR"/
+
+cd "$ROOT/firebase"
 echo "Desplegando solo Hosting..."
-firebase deploy --only hosting
+firebase deploy --only hosting --project encuestas-prometheus-9tzwei --non-interactive

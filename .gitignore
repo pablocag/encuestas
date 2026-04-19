@@ -6,6 +6,9 @@
 # Secretos Stripe para emulador de Cloud Functions (firebase emulators:start)
 firebase/functions/.secret.local
 
+# Salida copiada para Firebase Hosting (generada en deploy)
+firebase/hosting_web/
+
 # Node (Firebase Functions)
 **/node_modules/
 

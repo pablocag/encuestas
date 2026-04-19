@@ -45,7 +45,7 @@ Las callables `initStripePayment` e `initStripeTestPayment` leen **`STRIPE_SECRE
 
 ## 2.2 Hosting web (Flutter) en Firebase
 
-El archivo `firebase/firebase.json` apunta `hosting.public` a `../build/web` (salida de `flutter build web`) e incluye **rewrites** a `/index.html` para rutas limpias (`usePathUrlStrategy()` en la app).
+El archivo `firebase/firebase.json` usa `hosting.public` = `hosting_web` (carpeta **dentro** de `firebase/`, rellenada por `tool/deploy_web_firebase.*` copiando `build/web` tras `flutter build web`). Incluye **rewrites** a `/index.html` para rutas limpias (`usePathUrlStrategy()` en la app).
 
 1. Instalar [Firebase CLI](https://firebase.google.com/docs/cli): `npm install -g firebase-tools`.
 2. Iniciar sesión: `firebase login`.
