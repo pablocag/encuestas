@@ -1,0 +1,15 @@
+[
+  {
+    "origin": [
+      "https://encuestas-prometheus-9tzwei.web.app",
+      "https://encuestas-prometheus-9tzwei.firebaseapp.com",
+      "http://localhost:5000",
+      "http://localhost:8080",
+      "http://127.0.0.1:5000",
+      "http://127.0.0.1:8080"
+    ],
+    "method": ["GET", "HEAD"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": ["Content-Type", "Content-Length", "Content-Encoding", "Range"]
+  }
+]

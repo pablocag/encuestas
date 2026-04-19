@@ -61,6 +61,19 @@ La URL aparecerá en la consola (típicamente `https://encuestas-prometheus-9tzw
 
 ---
 
+## 2.3 CORS en Firebase Storage (web)
+
+Si en el navegador ves **CORS** al cargar imágenes desde `firebasestorage.googleapis.com` desde `*.web.app`, el bucket de GCS debe exponer orígenes permitidos. Flutter Web (p. ej. `CachedNetworkImage`) usa **XHR**, que exige cabeceras `Access-Control-Allow-Origin`.
+
+1. Archivo de reglas: `firebase/storage.cors.json` (orígenes hosting + localhost para desarrollo).
+2. Aplicar con **Google Cloud SDK** (`gsutil`):
+   - **Windows:** `pwsh ./tool/storage_cors_apply.ps1`
+   - **Manual:** `gsutil cors set firebase/storage.cors.json gs://encuestas-prometheus-9tzwei.appspot.com`
+
+Si añadís un **dominio custom** en Hosting, incluidlo también en `storage.cors.json` y volved a aplicar.
+
+---
+
 ## 3. Tiendas móviles
 
 - [ ] **Google Play**: notas de versión, capturas si aplica, revisión de permisos y *Data safety*.
