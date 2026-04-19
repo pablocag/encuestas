@@ -9,6 +9,9 @@ firebase/functions/.secret.local
 # Salida copiada para Firebase Hosting (generada en deploy)
 firebase/hosting_web/
 
+# Caché local de Firebase CLI (firebase deploy / emulators)
+firebase/.firebase/
+
 # Node (Firebase Functions)
 **/node_modules/
 
