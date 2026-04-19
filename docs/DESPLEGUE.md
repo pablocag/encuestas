@@ -30,7 +30,9 @@ Las callables `initStripePayment` e `initStripeTestPayment` leen **`STRIPE_SECRE
 0. **API Secret Manager** activa en el proyecto Google Cloud (una vez): [habilitar Secret Manager API](https://console.developers.google.com/apis/api/secretmanager.googleapis.com/overview?project=encuestas-prometheus-9tzwei) y esperar 1–2 minutos si acabas de activarla.
 1. En la raíz del repo, añade las claves a `.env` (ya ignorado por git), según `.env.example`.
 2. Sube los secretos al proyecto Firebase (por defecto `encuestas-prometheus-9tzwei`):
-   - **Windows:** `pwsh ./tool/deploy_stripe_secrets.ps1`
+   - **Windows (`.env` en la raíz):** `pwsh ./tool/deploy_stripe_secrets.ps1`
+   - **Windows (otro archivo):** `pwsh ./tool/deploy_stripe_secrets.ps1 -EnvPath C:\ruta\claves.env`
+   - **Windows (sin archivo, solo esta sesión):** define `$env:STRIPE_SECRET_KEY_LIVE` y `$env:STRIPE_SECRET_KEY_TEST` y ejecuta `pwsh ./tool/deploy_stripe_secrets.ps1 -FromEnvironment`
    - **Manual** (desde `firebase/`):  
      `firebase functions:secrets:set STRIPE_SECRET_KEY_LIVE --data-file ruta/al/archivo_solo_sk_live.txt --project encuestas-prometheus-9tzwei`  
      (igual para `STRIPE_SECRET_KEY_TEST` con la clave test).
