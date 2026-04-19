@@ -6,6 +6,9 @@
 # Secretos Stripe para emulador de Cloud Functions (firebase emulators:start)
 firebase/functions/.secret.local
 
+# Node (Firebase Functions)
+**/node_modules/
+
 # Flutter / Dart
 .dart_tool/
 .packages
