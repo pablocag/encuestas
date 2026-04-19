@@ -18,12 +18,29 @@ Checklist operativa antes y después de publicar una versión. Ajusta nombres de
 - [ ] **Firestore**: reglas desplegadas (`firebase deploy --only firestore:rules` o flujo equivalente).
 - [ ] **Índices**: `firestore.indexes.json` aplicado (`firebase deploy --only firestore:indexes`); comprobar en consola que no queden índices en estado *Error*.
 - [ ] **Storage**: reglas desplegadas (`firebase deploy --only storage`).
-- [ ] **Functions**: desplegar `functions` y `custom_cloud_functions` según `firebase.json`; variables y secretos configurados en el entorno de Functions (no en el repo). Stripe en `firebase/functions/index.js` usa **`STRIPE_SECRET_KEY_LIVE`** y **`STRIPE_SECRET_KEY_TEST`** (o `firebase functions:config:set stripe.secret_live` / `stripe.secret_test` en 1st gen).
-- [ ] **Hosting** (web Flutter): ver sección *Hosting web (Flutter)* más abajo.
+- [ ] **Functions**: desplegar `functions` y `custom_cloud_functions`; **Stripe** vía Secret Manager (ver §2.1).
+- [ ] **Hosting** (web Flutter): ver §2.2.
 
 ---
 
-## 2.1 Hosting web (Flutter) en Firebase
+## 2.1 Secretos Stripe (Cloud Functions v2)
+
+Las callables `initStripePayment` e `initStripeTestPayment` leen **`STRIPE_SECRET_KEY_LIVE`** y **`STRIPE_SECRET_KEY_TEST`** desde [Google Secret Manager](https://firebase.google.com/docs/functions/config-env#secret-manager). Requiere plan **Blaze**.
+
+1. En la raíz del repo, añade las claves a `.env` (ya ignorado por git), según `.env.example`.
+2. Sube los secretos al proyecto Firebase (por defecto `encuestas-prometheus-9tzwei`):
+   - **Windows:** `pwsh ./tool/deploy_stripe_secrets.ps1`
+   - **Manual** (desde `firebase/`):  
+     `firebase functions:secrets:set STRIPE_SECRET_KEY_LIVE --data-file ruta/al/archivo_solo_sk_live.txt --project encuestas-prometheus-9tzwei`  
+     (igual para `STRIPE_SECRET_KEY_TEST` con la clave test).
+3. Despliega el codebase `functions`:  
+   `cd firebase && firebase deploy --only functions --project encuestas-prometheus-9tzwei`  
+   (o solo el grupo que corresponda si usáis despliegue parcial).
+4. **Emulador local:** copia `firebase/functions/.secret.local.example` a **`firebase/functions/.secret.local`** y rellena las dos claves.
+
+---
+
+## 2.2 Hosting web (Flutter) en Firebase
 
 El archivo `firebase/firebase.json` apunta `hosting.public` a `../build/web` (salida de `flutter build web`) e incluye **rewrites** a `/index.html` para rutas limpias (`usePathUrlStrategy()` en la app).
 

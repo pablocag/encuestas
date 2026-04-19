@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Secretos Stripe para emulador de Cloud Functions (firebase emulators:start)
+firebase/functions/.secret.local
+
 # Flutter / Dart
 .dart_tool/
 .packages

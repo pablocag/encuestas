@@ -286,62 +286,54 @@ function getCharForIndex(charIdx) {
   }
 }
 const stripeModule = require("stripe");
+const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { defineSecret } = require("firebase-functions/params");
+
+/** Secretos en Google Secret Manager (subir con tool/deploy_stripe_secrets.ps1). Emulador: firebase/functions/.secret.local */
+const stripeSecretLive = defineSecret("STRIPE_SECRET_KEY_LIVE");
+const stripeSecretTest = defineSecret("STRIPE_SECRET_KEY_TEST");
 
 /**
- * Claves Stripe solo por entorno (nunca en el repositorio).
- * En producción: define STRIPE_SECRET_KEY_LIVE y STRIPE_SECRET_KEY_TEST
- * (p. ej. `firebase functions:secrets:set` en 2nd gen, o variables en Cloud Console
- * / .env para emulador). Opcionalmente 1st gen: `firebase functions:config:set stripe.secret_live=...`
+ * Pago Stripe con clave live (Secret Manager).
  */
-function stripeSecretKey(isProd) {
-  const fromEnv = isProd
-    ? process.env.STRIPE_SECRET_KEY_LIVE
-    : process.env.STRIPE_SECRET_KEY_TEST;
-  if (fromEnv) return fromEnv;
-  const cfg = (functions.config().stripe || {});
-  const fromCfg = isProd ? cfg.secret_live : cfg.secret_test;
-  if (fromCfg) return fromCfg;
-  return null;
-}
-
-const secretKey = (isProd) => {
-  const key = stripeSecretKey(isProd);
-  if (!key) {
-    throw new functions.https.HttpsError(
-      "failed-precondition",
-      "Stripe no configurado: STRIPE_SECRET_KEY_LIVE / STRIPE_SECRET_KEY_TEST o stripe.secret_live / stripe.secret_test (functions config).",
-    );
-  }
-  return key;
-};
-
-/**
- *
- */
-exports.initStripePayment = functions
-  .region("us-central1")
-  .https.onCall(async (data, context) => {
-    if (!context.auth) {
+exports.initStripePayment = onCall(
+  {
+    region: "us-central1",
+    secrets: [stripeSecretLive],
+  },
+  async (request) => {
+    if (!request.auth) {
       return "Unauthenticated calls are not allowed.";
     }
-    return await initPayment(data, true);
-  });
+    return await initPayment(request.data, stripeSecretLive.value());
+  },
+);
 
 /**
- *
+ * Pago Stripe con clave test (Secret Manager).
  */
-exports.initStripeTestPayment = functions
-  .region("us-central1")
-  .https.onCall(async (data, context) => {
-    if (!context.auth) {
+exports.initStripeTestPayment = onCall(
+  {
+    region: "us-central1",
+    secrets: [stripeSecretTest],
+  },
+  async (request) => {
+    if (!request.auth) {
       return "Unauthenticated calls are not allowed.";
     }
-    return await initPayment(data, false);
-  });
+    return await initPayment(request.data, stripeSecretTest.value());
+  },
+);
 
-async function initPayment(data, isProd) {
+async function initPayment(data, stripeSecretKeyStr) {
   try {
-    const stripe = new stripeModule.Stripe(secretKey(isProd), {
+    if (!stripeSecretKeyStr || !stripeSecretKeyStr.trim()) {
+      throw new HttpsError(
+        "failed-precondition",
+        "Stripe: secreto vacío. Define STRIPE_SECRET_KEY_* en Secret Manager o .secret.local para emulador.",
+      );
+    }
+    const stripe = new stripeModule.Stripe(stripeSecretKeyStr.trim(), {
       apiVersion: "2020-08-27",
     });
 
