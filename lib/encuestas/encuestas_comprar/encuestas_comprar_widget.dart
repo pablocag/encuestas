@@ -55,7 +55,14 @@ class _EncuestasComprarWidgetState extends State<EncuestasComprarWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Con loadDataAfterLaunch en main, offerings pueden seguir null en el
+      // primer frame; recargar aquí y refrescar evita el crash y el gris.
+      await revenue_cat.loadOfferings();
+      if (mounted) {
+        safeSetState(() {});
+      }
+    });
   }
 
   @override
@@ -221,16 +228,56 @@ class _EncuestasComprarWidgetState extends State<EncuestasComprarWidget>
                           ),
                           Builder(
                             builder: (context) {
-                              final purchaseIDs = revenue_cat
-                                  .offerings!.current!.availablePackages
-                                  .toList();
-                              if (purchaseIDs.isEmpty) {
+                              if (!revenue_cat.isConfigured) {
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 24.0, 12.0, 0.0),
+                                  child: Text(
+                                    'Las compras de paquetes no están disponibles en este entorno (RevenueCat no configurado). Prueba desde la app móvil o revisa la clave web en el despliegue.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  !FlutterFlowTheme.of(context)
+                                                      .bodyMediumIsCustom,
+                                        ),
+                                  ),
+                                );
+                              }
+                              final offerings = revenue_cat.offerings;
+                              if (offerings == null) {
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 32.0, 0.0, 0.0),
+                                  child: Center(
+                                    child: SizedBox(
+                                      width: 24.0,
+                                      height: 24.0,
+                                      child: SpinKitThreeBounce(
+                                        color: FlutterFlowTheme.of(context)
+                                            .barra,
+                                        size: 24.0,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final current = offerings.current;
+                              final packages = current?.availablePackages ?? [];
+                              if (packages.isEmpty) {
                                 return NoHayElementosWidget();
                               }
+
+                              final purchaseIDs = packages.toList();
 
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 itemCount: purchaseIDs.length,
                                 itemBuilder: (context, purchaseIDsIndex) {
