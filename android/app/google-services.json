@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1020500998533",
+    "project_id": "encuestas-prometheus-9tzwei",
+    "storage_bucket": "encuestas-prometheus-9tzwei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020500998533:android:85655ec2b72e92b564ecec",
+        "android_client_info": {
+          "package_name": "com.daangu.encuestas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK9e6mw4rd9Oo8t_YDvViUbgCLW3jesuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

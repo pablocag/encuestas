@@ -1,0 +1,6 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    # Archivo muy grande generado por FlutterFlow; analizarlo en CI aporta poco.
+    - lib/flutter_flow/custom_functions.dart

@@ -1,0 +1,418 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Padre",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notificaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "destinatarios",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "incidencias",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Destinatarios",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "noticias",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "tieneMembresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Padre",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notificaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "envidadoPor",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "incidencias",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "modelosEncuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "modelosPreguntasEncuesta",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "modeloEncuesta",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "numero",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "modelosPreguntasEncuesta",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "modeloEncuesta",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "multiSelect",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "numero",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "God",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Encuestador",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "God",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombres",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApPaterno",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ApMaterno",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "modelosEncuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activa",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "encuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "usuario",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "respuestasEncuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "encuesta",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "encuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "membresia",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "encuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "modeloEncuesta",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "terminada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "encuestas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "modeloEncuesta",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "terminada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaCreacion",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

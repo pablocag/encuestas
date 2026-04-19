@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    Alternatively, build your application passing the --base-href parameter
+    specifying the new root path of your web app.
+
+    Fore more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Encuestas Prometheus">
+
+  <!-- Iconos PWA / iOS (recursos estáticos en web/, generados por flutter_launcher_icons) -->
+  <link rel="apple-touch-icon" href="icons/app_launcher_icon.png">
+
+  <meta name="robots" content="noindex" />
+
+  <!-- Favicon: favicon.png (pequeño) + icono HD para pestañas de alta densidad -->
+  <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="icons/app_launcher_icon.png" sizes="192x192">
+
+  <!-- Open Graph & SEO tags -->
+  <meta property="og:title" content="encuestas prometheus" />
+  <meta property="og:description" content="Encuestas Prometheus" />
+  <meta property="og:image" content="/icons/app_launcher_icon.png" />
+  <meta name="twitter:title" content="encuestas prometheus" />
+  <meta name="twitter:description" content="Encuestas Prometheus" />
+  <meta name="twitter:image" content="/icons/app_launcher_icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title> encuestas prometheus </title>
+  <meta name="description" content="Encuestas Prometheus" />
+    
+
+  <!-- Status Bar color in Safari browser (iOS) and PWA -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fdf9f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#111d28">
+
+  <link rel="manifest" href="manifest.json">
+  
+</head>
+<body>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR3TSGCe2T0OLjQRe6bDWZhgvupwyc7Eg"></script>
+  
+  <script src="https://js.stripe.com/v3/"></script>
+  
+  <script>
+    {{flutter_bootstrap_js}}
+  </script>
+</body>
+</html>
