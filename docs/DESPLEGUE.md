@@ -66,7 +66,7 @@ La URL aparecerá en la consola (típicamente `https://encuestas-prometheus-9tzw
 Si en el navegador ves **CORS** al cargar imágenes desde `firebasestorage.googleapis.com` desde `*.web.app`, el bucket de GCS debe exponer orígenes permitidos. Flutter Web (p. ej. `CachedNetworkImage`) usa **XHR**, que exige cabeceras `Access-Control-Allow-Origin`.
 
 1. Archivo de reglas: `firebase/storage.cors.json` (orígenes `web.app`, `firebaseapp.com` del proyecto y localhost habituales). **GCS no admite comodines** en `origin`; el dominio `*.firebaseapp.com` se cubre con la URL exacta `https://encuestas-prometheus-9tzwei.firebaseapp.com`.
-2. **Google Cloud SDK** (`gcloud` / `gsutil`): si es la primera vez, `gcloud auth login` y `gcloud config set project encuestas-prometheus-9tzwei`.
+2. **Google Cloud SDK** (`gcloud` / `gsutil`): si PowerShell dice que **no reconoce `gcloud`**, el SDK no está en el `PATH`. Desde la raíz del repo ejecuta **`. .\tool\cloud_sdk_path.ps1`** (con el punto inicial) y en esa misma ventana: `gcloud auth login` y `gcloud config set project encuestas-prometheus-9tzwei`. Opción permanente: Variables de entorno del usuario → `Path` → añadir `...\Google\Cloud SDK\google-cloud-sdk\bin`.
 3. Aplicar CORS:
    - **Windows:** `pwsh ./tool/storage_cors_apply.ps1`
    - **Manual:** `gsutil cors set firebase/storage.cors.json gs://encuestas-prometheus-9tzwei.appspot.com`
